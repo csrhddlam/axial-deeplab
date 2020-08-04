@@ -25,8 +25,6 @@ ln -s path/to/dataset imagenet
 
 - Non-distributed training
 
-Specify gpus with gpu_id
-
 ```shell
 python train.py --model axial50s --gpu_id 0,1,2,3 --batch_size 128 --val_batch_size 128 --name axial50s --lr 0.05 --nesterov
 ```
