@@ -15,7 +15,7 @@ This re-implementation is authored by an amazing junior student, [Huaijin Pi](ht
 
 This repository is built for stand-alone axial-attention. 
 Now we support the training and testing code of image 
-classification on the imagenet dataset.
+classification on the ImageNet dataset.
 
 ## How to use 
 
@@ -52,3 +52,11 @@ python train.py --model axial50s --gpu_id 0,1,2,3 --batch_size 128 --val_batch_s
 ```
 
 You can test with distributed settings in the same way.
+
+## Credits
+
+- ImageNet training script is modified from https://github.com/mit-han-lab/proxylessnas
+
+- ImageNet distributed training script is modified from https://github.com/pytorch/examples/tree/master/imagenet
+
+- ResNet is modified from https://github.com/pytorch/vision/blob/master/torchvision/models/resnet.py
