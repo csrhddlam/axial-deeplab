@@ -62,7 +62,7 @@ def parse_args():
                         help='the name of work_dir')
     parser.add_argument('--no_cuda', action='store_true', default=False,
                         help='disables CUDA training')
-    parser.add_argument('--lr_scheduler', type=str, default="linear", choices=["linear", "cosine"],
+    parser.add_argument('--lr_scheduler', type=str, default="cosine", choices=["linear", "cosine"],
                         help='how to schedule learning rate')
     parser.add_argument('--test', action='store_true', default=False,
                         help='Test')
