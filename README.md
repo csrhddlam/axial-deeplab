@@ -9,7 +9,7 @@ This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https
   year={2020}
 }
 ```
-Currently, only ImageNet classification with the "Conv-Stem + Axial-Attention" backbone is supported. If you are interested in contributing to this repo, you can open an issue and we can further discuss.
+Currently, only ImageNet classification with the "Conv-Stem + Axial-Attention" backbone is supported. If you are interested in contributing to this repo, please open an issue and we can further discuss.
 
 
 ### Preparation
