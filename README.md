@@ -48,7 +48,7 @@ You can change the model name to train different models.
 ### Testing
 
 ```shell
-python train.py --model axial50xs --gpu_id 0,1,2,3 --batch_size 128 --val_batch_size 128 --name axial50xs --lr 0.05 --nesterov --test
+python train.py --model axial50s --gpu_id 0,1,2,3 --batch_size 128 --val_batch_size 128 --name axial50s --lr 0.05 --nesterov --test
 ```
 
 You can test with distributed settings in the same way.
