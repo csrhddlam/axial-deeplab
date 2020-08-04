@@ -11,11 +11,11 @@ This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https
 ```
 Currently, only ImageNet classification with the "Conv-Stem + Axial-Attention" backbone is supported. If you are interested in contributing to this repo, you can open an issue and we can further discuss.
 
-## How to use 
 
-### Prepare datasets
+### Preparation
 
 ```shell
+pip install tensorboardX
 mkdir data
 cd data
 ln -s path/to/dataset imagenet
