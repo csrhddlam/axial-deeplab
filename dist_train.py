@@ -9,6 +9,7 @@ import torch.multiprocessing as mp
 import torch.distributed as dist
 import torch.backends.cudnn as cudnn
 import tensorboardX
+import numpy as np
 import lib
 from lib.utils import adjust_learning_rate, cross_entropy_with_label_smoothing, \
     accuracy, dist_save_model, load_model, resume_model
@@ -204,6 +205,8 @@ def train_net(gpu, ngpus_per_node, args):
     else:
         log_writer = None    
     model = lib.build_model(args)
+    print('Parameters:', sum([np.prod(p.size()) for p in model.parameters()]))
+
     optimizer = lib.build_optimizer(args, model)
 
     if args.distributed:

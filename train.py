@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
 import tensorboardX
+import numpy as np
 import lib
 from lib.utils import adjust_learning_rate, cross_entropy_with_label_smoothing, \
     accuracy, save_model, load_model, resume_model
@@ -177,6 +178,8 @@ def train_net(args):
     log_writer = tensorboardX.SummaryWriter(args.log_dir)
     train_loader, _, val_loader, _ = lib.build_dataloader(args)
     model = lib.build_model(args)
+    print('Parameters:', sum([np.prod(p.size()) for p in model.parameters()]))
+
     model = torch.nn.DataParallel(model)
     optimizer = lib.build_optimizer(args, model)
 
