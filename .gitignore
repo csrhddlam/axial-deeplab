@@ -1,0 +1,4 @@
+data/
+work_dirs/
+__pycache__/
+.idea
