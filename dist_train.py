@@ -36,7 +36,7 @@ def parse_args():
                         help='input batch size for training')
     parser.add_argument("--color_jitter", action='store_true', default=False,
                         help="To apply color augmentation or not.")
-    parser.add_argument('--model', default='axial50xs',
+    parser.add_argument('--model', default='axial50s',
                         help='Model names.')
     parser.add_argument('--epochs', type=int, default=130,
                         help='number of epochs to train')
@@ -60,7 +60,7 @@ def parse_args():
                         help='To use nesterov or not.')
     parser.add_argument('--work_dirs', default='./work_dirs',
                         help='path to work dirs')
-    parser.add_argument('--name', default='axial50xs',
+    parser.add_argument('--name', default='axial50s',
                         help='the name of work_dir')
     parser.add_argument('--no_cuda', action='store_true', default=False,
                         help='disables CUDA training')

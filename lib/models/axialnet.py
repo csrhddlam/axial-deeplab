@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from .utils import *
 
 
-__all__ = ['axial50xs', 'axial50xm', 'axial50xl']
+__all__ = ['axial50s', 'axial50m', 'axial50l']
 
 
 def conv1x1(in_planes, out_planes, stride=1):
@@ -270,16 +270,16 @@ class AxialAttentionNet(nn.Module):
         return self._forward_impl(x)
 
 
-def axial50xs(pretrained=False, **kwargs):
+def axial50s(pretrained=False, **kwargs):
     model = AxialAttentionNet(AxialBlock, [3, 4, 6, 3], s=0.5, **kwargs)
     return model
 
 
-def axial50xm(pretrained=False, **kwargs):
+def axial50m(pretrained=False, **kwargs):
     model = AxialAttentionNet(AxialBlock, [3, 4, 6, 3], s=0.75, **kwargs)
     return model
 
 
-def axial50xl(pretrained=False, **kwargs):
+def axial50l(pretrained=False, **kwargs):
     model = AxialAttentionNet(AxialBlock, [3, 4, 6, 3], s=1, **kwargs)
     return model

@@ -34,13 +34,13 @@ ln -s path/to/dataset imagenet
 Specify gpus with gpu_id
 
 ```shell
-python train.py --model axial50xs --gpu_id 0,1,2,3 --batch_size 128 --val_batch_size 128 --name axial50xs --lr 0.05 --nesterov
+python train.py --model axial50s --gpu_id 0,1,2,3 --batch_size 128 --val_batch_size 128 --name axial50s --lr 0.05 --nesterov
 ```
 
 - Distributed training
 
 ```shell script
-CUDA_VISIBLE_DEVICES=0,1,2,3 python dist_train.py --model axial50xs --batch_size 128 --val_batch_size 128 --name axial50xs --lr 0.05 --nesterov --dist-url 'tcp://127.0.0.1:4128' --dist-backend 'nccl' --multiprocessing-distributed --world-size 1 --rank 0
+CUDA_VISIBLE_DEVICES=0,1,2,3 python dist_train.py --model axial50s --batch_size 128 --val_batch_size 128 --name axial50s --lr 0.05 --nesterov --dist-url 'tcp://127.0.0.1:4128' --dist-backend 'nccl' --multiprocessing-distributed --world-size 1 --rank 0
 ```
 
 You can change the model name to train different models.
