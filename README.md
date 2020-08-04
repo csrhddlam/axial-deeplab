@@ -1,6 +1,6 @@
 # Axial-DeepLab (ECCV 2020, Spotlight)
 
-This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https://arxiv.org/abs/2003.07853):
+This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https://arxiv.org/abs/2003.07853). The re-implementation is mainly done by an amazing junior student, [Huaijin Pi](https://huaijinpi.com/).
 ```BibTeX
 @inproceedings{wang2020axial,
   title={Axial-DeepLab: Stand-Alone Axial-Attention for Panoptic Segmentation},
@@ -9,13 +9,7 @@ This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https
   year={2020}
 }
 ```
-This re-implementation is authored by an amazing junior student, [Huaijin Pi](https://huaijinpi.com/).
-
-## Introduction
-
-This repository is built for stand-alone axial-attention. 
-Now we support the training and testing code of image 
-classification on the ImageNet dataset.
+Currently, only ImageNet classification with the "Conv-Stem + Axial-Attention" backbone is supported. If you are interested in contributing to this repo, you can open an issue and we can further discuss.
 
 ## How to use 
 
