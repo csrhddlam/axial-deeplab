@@ -47,9 +47,12 @@ class AxialAttention(nn.Module):
         self.bn_sve = nn.BatchNorm2d(out_planes)
 
         # Position embedding
-        self.q_relative = nn.Parameter(torch.randn(self.group_planes // 2, kernel_size * 2 - 1, 1), requires_grad=True)
-        self.k_relative = nn.Parameter(torch.randn(self.group_planes // 2, kernel_size * 2 - 1, 1), requires_grad=True)
-        self.v_relative = nn.Parameter(torch.randn(self.group_planes, kernel_size * 2 - 1, 1), requires_grad=True)
+        # Note: Instead of creating an absolute spatial grid and slicing into it
+        # in every forward call (readable code but slow execution) create a compact
+        # positional embedding parameter that assumes axial translation on axis 1
+        self.q_relative = nn.Parameter(torch.randn(self.group_planes // 2, kernel_size), requires_grad=True)
+        self.k_relative = nn.Parameter(torch.randn(self.group_planes // 2, kernel_size), requires_grad=True)
+        self.v_relative = nn.Parameter(torch.randn(self.group_planes, kernel_size), requires_grad=True)
 
         if stride > 1:
             self.pooling = nn.AvgPool2d(stride, stride=stride)
@@ -70,16 +73,10 @@ class AxialAttention(nn.Module):
         v = self.bn_v(v)
 
         # Calculate position embedding
-        q_embedding = []
-        k_embedding = []
-        v_embedding = []
-        for i in range(self.kernel_size):
-            q_embedding.append(self.q_relative[:, self.kernel_size - 1 - i: self.kernel_size * 2 - 1 - i])
-            k_embedding.append(self.k_relative[:, self.kernel_size - 1 - i: self.kernel_size * 2 - 1 - i])
-            v_embedding.append(self.v_relative[:, self.kernel_size - 1 - i: self.kernel_size * 2 - 1 - i])
-        q_embedding = torch.cat(q_embedding, dim=2)
-        k_embedding = torch.cat(k_embedding, dim=2)
-        v_embedding = torch.cat(v_embedding, dim=2)
+        q_embedding = self.q_relative.unsqueeze(-1).expand(-1, -1, self.kernel_size)
+        k_embedding = self.k_relative.unsqueeze(-1).expand(-1, -1, self.kernel_size)
+        v_embedding = self.v_relative.unsqueeze(-1).expand(-1, -1, self.kernel_size)
+
 
         qr = torch.einsum('bgciw, cij->bgijw', q.reshape(N, self.groups, self.group_planes // 2, H, W), q_embedding)
         qr = self.bn_qr(qr.reshape(N, self.groups, -1, W)).reshape(N, self.groups, H, H, W)
