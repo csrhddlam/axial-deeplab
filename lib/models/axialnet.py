@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from .utils import *
 
 
-__all__ = ['axial50s', 'axial50m', 'axial50l']
+__all__ = ['axial26s', 'axial50s', 'axial50m', 'axial50l']
 
 
 def conv1x1(in_planes, out_planes, stride=1):
@@ -87,11 +87,9 @@ class AxialAttention(nn.Module):
         return output
 
     def reset_parameters(self):
-        n = self.in_planes
-        self.qkv_transform.weight.data.normal_(0, math.sqrt(1. / n))
-        n = self.group_planes
+        self.qkv_transform.weight.data.normal_(0, math.sqrt(1. / self.in_planes))
         #nn.init.uniform_(self.relative, -0.1, 0.1)
-        nn.init.normal_(self.relative, 0, math.sqrt(1. / n))
+        nn.init.normal_(self.relative, 0., math.sqrt(1. / self.group_planes))
 
 
 class AxialBlock(nn.Module):
@@ -239,6 +237,11 @@ class AxialAttentionNet(nn.Module):
 
     def forward(self, x):
         return self._forward_impl(x)
+
+
+def axial26s(pretrained=False, **kwargs):
+    model = AxialAttentionNet(AxialBlock, [2, 2, 2, 2], s=0.5, **kwargs)
+    return model
 
 
 def axial50s(pretrained=False, **kwargs):
