@@ -240,7 +240,7 @@ class AxialAttentionNet(nn.Module):
 
 
 def axial26s(pretrained=False, **kwargs):
-    model = AxialAttentionNet(AxialBlock, [2, 2, 2, 2], s=0.5, **kwargs)
+    model = AxialAttentionNet(AxialBlock, [1, 2, 4, 1], s=0.5, **kwargs)
     return model
 
 
