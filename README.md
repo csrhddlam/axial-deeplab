@@ -1,6 +1,6 @@
 # Axial-DeepLab (ECCV 2020, Spotlight)
 
-This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https://arxiv.org/abs/2003.07853). The re-implementation is mainly done by an amazing junior student, [Huaijin Pi](https://huaijinpi.com/).
+This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https://arxiv.org/abs/2003.07853). The re-implementation is mainly done by an amazing senior student, [Huaijin Pi](https://huaijinpi.com/).
 ```BibTeX
 @inproceedings{wang2020axial,
   title={Axial-DeepLab: Stand-Alone Axial-Attention for Panoptic Segmentation},
@@ -44,6 +44,13 @@ python train.py --model axial50s --gpu_id 0,1,2,3 --batch_size 128 --val_batch_s
 ```
 
 You can test with distributed settings in the same way.
+
+### Model Zoo
+
+| Method | Params (M) | Top-1 Acc (%) |
+|:------:|:----------:|:-------------:|
+|ResNet-26| 13.7 | 74.5 |
+|[Axial-ResNet-26-S](http://www.cs.jhu.edu/~hwang157/axial26s.pth)|**5.9**|**75.8**|
 
 ## Credits
 
