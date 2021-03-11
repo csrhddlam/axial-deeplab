@@ -183,6 +183,7 @@ def train(model, train_sampler, train_loader, optimizer, criterion, epoch, log_w
     if log_writer and verbose:
         log_writer.add_scalar('train/loss', train_loss.avg, epoch)
         log_writer.add_scalar('train/accuracy', train_accuracy.avg, epoch)
+        log_writer.add_scalar('train/lr', lr_cur, epoch)
 
 
 def train_net(gpu, ngpus_per_node, args):
@@ -205,6 +206,7 @@ def train_net(gpu, ngpus_per_node, args):
     else:
         log_writer = None    
     model = lib.build_model(args)
+    print(model)
     print('Parameters:', sum([np.prod(p.size()) for p in model.parameters()]))
 
     optimizer = lib.build_optimizer(args, model)

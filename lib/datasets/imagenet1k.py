@@ -13,7 +13,7 @@ def imagenet1k(args, distributed=False):
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     process = [
-        transforms.RandomResizedCrop(224),
+        transforms.RandomResizedCrop(224, scale=(0.08, 1.0)),
         transforms.RandomHorizontalFlip(),
     ]
     if color_jitter:
