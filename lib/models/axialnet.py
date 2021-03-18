@@ -37,6 +37,8 @@ class AxialAttention(nn.Module):
 
         # Position embedding
         self.relative = nn.Parameter(torch.randn(self.group_planes // 2, kernel_size * 2 - 1), requires_grad=True)
+        self.scaling = (self.group_planes // 2) ** -0.5
+ 
         query_index = torch.arange(kernel_size).unsqueeze(0)
         key_index = torch.arange(kernel_size).unsqueeze(1)
         relative_index = key_index - query_index + kernel_size - 1
@@ -81,6 +83,17 @@ class AxialAttention(nn.Module):
         self.qkv_transform.weight.data.normal_(0, math.sqrt(1. / self.in_planes))
         #nn.init.uniform_(self.relative, -0.1, 0.1)
         nn.init.normal_(self.relative, 0., math.sqrt(1. / self.group_planes))
+        self.relative = self.truncated_normal_(self.relative)
+
+    def truncated_normal_(self,tensor,mean=0,std=1):
+        with torch.no_grad():
+            size = tensor.shape
+            tmp = tensor.new_empty(size + (4, )).normal_()
+            valid = (tmp < 2) & (tmp > -2)
+            ind = valid.max(-1, keepdim=True)[1]
+            tensor.data.copy_(tmp.gather(-1, ind).squeeze(-1))
+            tensor.data.mul_(std).add_(mean)
+        return tensor
 
 
 class AxialBlock(nn.Module):
@@ -136,7 +149,7 @@ class AxialAttentionNet(nn.Module):
             norm_layer = nn.BatchNorm2d
         self._norm_layer = norm_layer
 
-        self.inplanes = int(64 * s)
+        self.inplanes = 64
         self.dilation = 1
         if replace_stride_with_dilation is None:
             # each element in the tuple indicates if we should replace
