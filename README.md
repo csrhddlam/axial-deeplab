@@ -1,5 +1,7 @@
 # Axial-DeepLab (ECCV 2020, Spotlight)
 
+News: The official TF2 implementation is available in [DeepLab2](https://github.com/google-research/deeplab2).
+
 This is an on-going PyTorch re-implementation of the [Axial-DeepLab paper](https://arxiv.org/abs/2003.07853). The re-implementation is mainly done by an amazing senior student, [Huaijin Pi](https://huaijinpi.com/).
 ```BibTeX
 @inproceedings{wang2020axial,
