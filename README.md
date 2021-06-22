@@ -1,6 +1,6 @@
 # Axial-DeepLab (ECCV 2020, Spotlight)
 
-News: The official TF2 implementation is available in [DeepLab2](https://github.com/google-research/deeplab2).
+News: The [official TF2 re-implementation](https://github.com/google-research/deeplab2/blob/main/g3doc/projects/axial_deeplab.md) is available in [DeepLab2](https://github.com/google-research/deeplab2). Axial-SWideRNet achieves 68.0% PQ or 83.5% mIoU on Cityscaspes validation set, with only *single-scale* inference and *ImageNet-1K* pretrained checkpoints.
 
 This is a PyTorch re-implementation of the [Axial-DeepLab paper](https://arxiv.org/abs/2003.07853). The re-implementation is mainly done by an amazing senior student, [Huaijin Pi](https://huaijinpi.com/).
 ```BibTeX
